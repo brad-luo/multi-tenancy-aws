@@ -2,6 +2,7 @@ import {
   PutObjectCommand, 
   GetObjectCommand, 
   DeleteObjectCommand, 
+  DeleteObjectsCommand,
   ListObjectsV2Command
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
@@ -215,5 +216,88 @@ export async function getFileUploadUrl(
   } catch (error) {
     console.error('Error getting file upload URL:', error);
     return null;
+  }
+}
+
+export async function deleteProjectFiles(
+  userId: string,
+  workspaceId: string,
+  projectId: string
+): Promise<boolean> {
+  try {
+    const prefix = `users/${userId}/workspaces/${workspaceId}/projects/${projectId}/`;
+    let continuationToken: string | undefined;
+    let hasMoreObjects = true;
+
+    while (hasMoreObjects) {
+      const listResult = await s3Client.send(new ListObjectsV2Command({
+        Bucket: S3_BUCKET,
+        Prefix: prefix,
+        ContinuationToken: continuationToken,
+      }));
+
+      if (!listResult.Contents || listResult.Contents.length === 0) {
+        break;
+      }
+
+      const objectsToDelete = listResult.Contents.map(obj => ({ Key: obj.Key! }));
+      
+      await s3Client.send(new DeleteObjectsCommand({
+        Bucket: S3_BUCKET,
+        Delete: {
+          Objects: objectsToDelete,
+          Quiet: true,
+        },
+      }));
+
+      hasMoreObjects = listResult.IsTruncated || false;
+      continuationToken = listResult.NextContinuationToken;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error deleting project files:', error);
+    return false;
+  }
+}
+
+export async function deleteWorkspaceFiles(
+  userId: string,
+  workspaceId: string
+): Promise<boolean> {
+  try {
+    const prefix = `users/${userId}/workspaces/${workspaceId}/`;
+    let continuationToken: string | undefined;
+    let hasMoreObjects = true;
+
+    while (hasMoreObjects) {
+      const listResult = await s3Client.send(new ListObjectsV2Command({
+        Bucket: S3_BUCKET,
+        Prefix: prefix,
+        ContinuationToken: continuationToken,
+      }));
+
+      if (!listResult.Contents || listResult.Contents.length === 0) {
+        break;
+      }
+
+      const objectsToDelete = listResult.Contents.map(obj => ({ Key: obj.Key! }));
+      
+      await s3Client.send(new DeleteObjectsCommand({
+        Bucket: S3_BUCKET,
+        Delete: {
+          Objects: objectsToDelete,
+          Quiet: true,
+        },
+      }));
+
+      hasMoreObjects = listResult.IsTruncated || false;
+      continuationToken = listResult.NextContinuationToken;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error deleting workspace files:', error);
+    return false;
   }
 }

@@ -4,6 +4,7 @@ import { Project } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
 import { getWorkspaceById } from './workspace';
 import { LIMITS, canAddProject } from '@/config/global-config';
+import { deleteProjectFiles } from './storage';
 
 export async function createProject(
   name: string, 
@@ -154,6 +155,12 @@ export async function deleteProject(id: string, userId: string): Promise<boolean
     const project = await getProjectById(id);
     if (!project || project.userId !== userId) {
       throw new Error('Project not found or access denied');
+    }
+
+    // Delete all S3 files for this project
+    const s3DeleteSuccess = await deleteProjectFiles(userId, project.workspaceId, id);
+    if (!s3DeleteSuccess) {
+      console.warn('Failed to delete some S3 files for project:', id);
     }
 
     await docClient.send(new DeleteCommand({

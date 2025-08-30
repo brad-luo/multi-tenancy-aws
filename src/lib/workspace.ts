@@ -3,6 +3,7 @@ import { docClient, TABLE_NAMES } from './aws-config';
 import { Workspace } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
 import { LIMITS, canAddWorkspace } from '@/config/global-config';
+import { deleteWorkspaceFiles } from './storage';
 
 export async function createWorkspace(
   name: string, 
@@ -127,6 +128,12 @@ export async function deleteWorkspace(id: string, userId: string): Promise<boole
     const workspace = await getWorkspaceById(id);
     if (!workspace || workspace.userId !== userId) {
       throw new Error('Workspace not found or access denied');
+    }
+
+    // Delete all S3 files for this workspace
+    const s3DeleteSuccess = await deleteWorkspaceFiles(userId, id);
+    if (!s3DeleteSuccess) {
+      console.warn('Failed to delete some S3 files for workspace:', id);
     }
 
     await docClient.send(new DeleteCommand({
