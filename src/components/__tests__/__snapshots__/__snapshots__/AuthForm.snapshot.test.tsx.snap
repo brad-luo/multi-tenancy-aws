@@ -1,0 +1,271 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`AuthForm Snapshots matches snapshot for loading state 1`] = `
+<div
+  class="min-h-screen flex items-center justify-center"
+>
+  <div
+    class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm w-full max-w-md"
+    data-slot="card"
+  >
+    <div
+      class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+      data-slot="card-header"
+    >
+      <div
+        class="leading-none font-semibold text-center"
+        data-slot="card-title"
+      >
+        Sign In
+      </div>
+    </div>
+    <div
+      class="px-6"
+      data-slot="card-content"
+    >
+      <form
+        class="space-y-4"
+      >
+        <div
+          class="space-y-2"
+        >
+          <label
+            class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+            data-slot="label"
+            for="username"
+          >
+            Username
+          </label>
+          <input
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            data-slot="input"
+            id="username"
+            name="username"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="space-y-2"
+        >
+          <label
+            class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+            data-slot="label"
+            for="password"
+          >
+            Password
+          </label>
+          <input
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            data-slot="input"
+            id="password"
+            minlength="6"
+            name="password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+          data-slot="button"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </form>
+      <div
+        class="mt-4 text-center"
+      >
+        <button
+          class="text-blue-500 hover:underline"
+          type="button"
+        >
+          Need an account? Sign up
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AuthForm Snapshots matches snapshot for login form 1`] = `
+<div
+  class="min-h-screen flex items-center justify-center"
+>
+  <div
+    class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm w-full max-w-md"
+    data-slot="card"
+  >
+    <div
+      class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+      data-slot="card-header"
+    >
+      <div
+        class="leading-none font-semibold text-center"
+        data-slot="card-title"
+      >
+        Sign In
+      </div>
+    </div>
+    <div
+      class="px-6"
+      data-slot="card-content"
+    >
+      <form
+        class="space-y-4"
+      >
+        <div
+          class="space-y-2"
+        >
+          <label
+            class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+            data-slot="label"
+            for="username"
+          >
+            Username
+          </label>
+          <input
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            data-slot="input"
+            id="username"
+            name="username"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="space-y-2"
+        >
+          <label
+            class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+            data-slot="label"
+            for="password"
+          >
+            Password
+          </label>
+          <input
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            data-slot="input"
+            id="password"
+            minlength="6"
+            name="password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+          data-slot="button"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </form>
+      <div
+        class="mt-4 text-center"
+      >
+        <button
+          class="text-blue-500 hover:underline"
+          type="button"
+        >
+          Need an account? Sign up
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AuthForm Snapshots matches snapshot with error state 1`] = `
+<div
+  class="min-h-screen flex items-center justify-center"
+>
+  <div
+    class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm w-full max-w-md"
+    data-slot="card"
+  >
+    <div
+      class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+      data-slot="card-header"
+    >
+      <div
+        class="leading-none font-semibold text-center"
+        data-slot="card-title"
+      >
+        Sign In
+      </div>
+    </div>
+    <div
+      class="px-6"
+      data-slot="card-content"
+    >
+      <form
+        class="space-y-4"
+      >
+        <div
+          class="space-y-2"
+        >
+          <label
+            class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+            data-slot="label"
+            for="username"
+          >
+            Username
+          </label>
+          <input
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            data-slot="input"
+            id="username"
+            name="username"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="space-y-2"
+        >
+          <label
+            class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+            data-slot="label"
+            for="password"
+          >
+            Password
+          </label>
+          <input
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            data-slot="input"
+            id="password"
+            minlength="6"
+            name="password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+          data-slot="button"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </form>
+      <div
+        class="mt-4 text-center"
+      >
+        <button
+          class="text-blue-500 hover:underline"
+          type="button"
+        >
+          Need an account? Sign up
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
