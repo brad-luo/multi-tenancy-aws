@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import AuthForm from '../../AuthForm';
+import AuthForm from '../AuthForm';
 import { useAuth } from '@/contexts/AuthContext';
 
 // Mock the auth context

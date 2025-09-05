@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -13,10 +14,11 @@ import { LIMITS, canAddProject, UI_CONFIG } from '@/config/global-config';
 interface ProjectViewProps {
   workspace: Workspace;
   userId: string;
-  onProjectSelect: (project: Project) => void;
+  onProjectSelect?: (project: Project) => void; // Made optional for backward compatibility
 }
 
 export default function ProjectView({ workspace, userId, onProjectSelect }: ProjectViewProps) {
+  const router = useRouter();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
@@ -119,7 +121,7 @@ export default function ProjectView({ workspace, userId, onProjectSelect }: Proj
           )}
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
+          <DialogTrigger asChild className='dark:text-white dark:bg-gray-600'>
             <Button disabled={!canAddProject(projects.length)}>
               <Plus className="h-4 w-4 mr-2" />
               Create Project
@@ -158,8 +160,8 @@ export default function ProjectView({ workspace, userId, onProjectSelect }: Proj
       </div>
 
       {UI_CONFIG.SHOW_LIMITS.PROJECT_COUNT && (
-        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-blue-800 text-sm">
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg dark:text-white dark:bg-gray-600">
+          <p className="text-blue-800 text-sm dark:text-white">
             Projects: {projects.length}/{LIMITS.PROJECTS_PER_WORKSPACE}
           </p>
         </div>
@@ -181,7 +183,13 @@ export default function ProjectView({ workspace, userId, onProjectSelect }: Proj
           >
             <CardHeader>
               <div className="flex justify-between items-start">
-                <div className="cursor-pointer flex-1" onClick={() => onProjectSelect(project)}>
+                <div className="cursor-pointer flex-1" onClick={() => {
+                  if (onProjectSelect) {
+                    onProjectSelect(project);
+                  } else {
+                    router.push(`/workspace/${workspace.id}/project/${project.id}`);
+                  }
+                }}>
                   <CardTitle className="flex items-center">
                     <FolderOpen className="h-5 w-5 mr-2 text-blue-500" />
                     {project.name}
@@ -204,7 +212,13 @@ export default function ProjectView({ workspace, userId, onProjectSelect }: Proj
               </div>
             </CardHeader>
             <CardContent>
-              <div className="cursor-pointer" onClick={() => onProjectSelect(project)}>
+              <div className="cursor-pointer" onClick={() => {
+                if (onProjectSelect) {
+                  onProjectSelect(project);
+                } else {
+                  router.push(`/workspace/${workspace.id}/project/${project.id}`);
+                }
+              }}>
                 <p className="text-xs text-gray-500">
                   Created: {new Date(project.createdAt).toLocaleDateString()}
                 </p>

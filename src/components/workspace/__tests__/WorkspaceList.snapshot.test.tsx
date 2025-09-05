@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
-import WorkspaceList from '../../WorkspaceList';
+import WorkspaceList from '../WorkspaceList';
 import { Workspace } from '@/types';
 import { LIMITS } from '@/config/global-config';
 

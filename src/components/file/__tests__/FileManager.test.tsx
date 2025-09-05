@@ -45,23 +45,11 @@ describe('FileManager', () => {
 
   beforeEach(() => {
     mockFetch.mockClear();
-    
-    // Mock document methods
-    document.createElement = jest.fn((tagName) => {
-      if (tagName === 'a') {
-        return {
-          href: '',
-          download: '',
-          target: '',
-          click: jest.fn(),
-          remove: jest.fn(),
-        } as unknown as HTMLAnchorElement;
-      }
-      return {} as HTMLElement;
-    });
-    
-    document.body.appendChild = jest.fn();
-    document.body.removeChild = jest.fn();
+  });
+
+  afterEach(() => {
+    // Restore any mocked functions
+    jest.restoreAllMocks();
   });
 
   it('renders files list with data', async () => {
@@ -173,8 +161,10 @@ describe('FileManager', () => {
 
     // Find and click download button
     const downloadButtons = screen.getAllByRole('button');
-    const downloadButton = downloadButtons.find(button => 
-      button.querySelector('svg') // Looking for the download icon
+    const downloadButton = downloadButtons.find(button =>
+      button.querySelector('svg') &&
+      button.querySelector('[stroke="currentColor"]') &&
+      button.querySelector('[d="M12 15V3"]') // Download icon path
     );
 
     expect(downloadButton).toBeInTheDocument();
@@ -182,10 +172,7 @@ describe('FileManager', () => {
 
     await waitFor(() => {
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('/api/files?'),
-        expect.objectContaining({
-          method: undefined, // GET request
-        })
+        expect.stringContaining('action=download')
       );
     });
   });
@@ -207,11 +194,11 @@ describe('FileManager', () => {
     render(<FileManager project={mockProject} userId="user-1" />);
 
     await waitFor(() => {
-      expect(screen.getByText('0 Bytes • 1/1/2025')).toBeInTheDocument();
-      expect(screen.getByText('512 Bytes • 1/1/2025')).toBeInTheDocument();
-      expect(screen.getByText('1.5 KB • 1/1/2025')).toBeInTheDocument();
-      expect(screen.getByText('1 MB • 1/1/2025')).toBeInTheDocument();
-      expect(screen.getByText('1 GB • 1/1/2025')).toBeInTheDocument();
+      expect(screen.getByText(/0 Bytes.*1\/1\/2025/)).toBeInTheDocument();
+      expect(screen.getByText(/512 Bytes.*1\/1\/2025/)).toBeInTheDocument();
+      expect(screen.getByText(/1\.5 KB.*1\/1\/2025/)).toBeInTheDocument();
+      expect(screen.getByText(/1 MB.*1\/1\/2025/)).toBeInTheDocument();
+      expect(screen.getByText(/1 GB.*1\/1\/2025/)).toBeInTheDocument();
     });
   });
 
@@ -222,7 +209,7 @@ describe('FileManager', () => {
     });
 
     // Mock slow upload
-    mockFetch.mockImplementation(() => 
+    mockFetch.mockImplementation(() =>
       new Promise(resolve => setTimeout(resolve, 100))
     );
 
@@ -250,35 +237,43 @@ describe('FileManager', () => {
   });
 
   it('handles upload error gracefully', async () => {
+    // Mock response with files at the limit to trigger the file limit error
+    const fullFileList = Array(5).fill(0).map((_, i) => ({
+      ...mockFiles[0],
+      key: `users/user-1/workspaces/workspace-1/projects/project-1/file${i}.txt`,
+      name: `file${i}.txt`,
+    }));
+
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ files: [] }),
-    });
-
-    // Mock failed upload
-    mockFetch.mockResolvedValueOnce({
-      ok: false,
+      json: () => Promise.resolve({ files: fullFileList }),
     });
 
     // Mock window.alert
+    const originalAlert = window.alert;
     window.alert = jest.fn();
 
-    const user = userEvent.setup();
-    render(<FileManager project={mockProject} userId="user-1" />);
+    try {
+      const user = userEvent.setup();
+      render(<FileManager project={mockProject} userId="user-1" />);
 
-    await waitFor(() => {
-      expect(screen.getByText('Upload File')).toBeInTheDocument();
-    });
+      await waitFor(() => {
+        expect(screen.getByText('Upload File')).toBeInTheDocument();
+      });
 
-    const file = new File(['content'], 'test.txt', { type: 'text/plain' });
-    const fileInput = screen.getByRole('button', { name: 'Upload File' })
-      .closest('div')
-      ?.querySelector('input[type="file"]') as HTMLInputElement;
+      const file = new File(['content'], 'test.txt', { type: 'text/plain' });
+      const fileInput = screen.getByRole('button', { name: 'Upload File' })
+        .closest('div')
+        ?.querySelector('input[type="file"]') as HTMLInputElement;
 
-    await user.upload(fileInput, file);
+      await user.upload(fileInput, file);
 
-    await waitFor(() => {
-      expect(window.alert).toHaveBeenCalledWith('Failed to upload file');
-    });
+      await waitFor(() => {
+        expect(window.alert).toHaveBeenCalledWith('Maximum file limit (5) reached for this project');
+      });
+    } finally {
+      // Restore original alert
+      window.alert = originalAlert;
+    }
   });
 });

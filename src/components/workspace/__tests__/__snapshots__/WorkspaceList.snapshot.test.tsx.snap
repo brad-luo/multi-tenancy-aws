@@ -24,7 +24,7 @@ exports[`WorkspaceList Snapshots matches snapshot for maximum workspaces limit 1
       aria-controls="radix-«r3»"
       aria-expanded="false"
       aria-haspopup="dialog"
-      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 dark:text-white dark:bg-gray-600"
       data-slot="dialog-trigger"
       data-state="closed"
       disabled=""
@@ -54,10 +54,10 @@ exports[`WorkspaceList Snapshots matches snapshot for maximum workspaces limit 1
     </button>
   </div>
   <div
-    class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg"
+    class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg dark:text-white dark:bg-gray-600"
   >
     <p
-      class="text-blue-800 text-sm"
+      class="text-blue-800 text-sm dark:text-white"
     >
       Workspaces: 
       10
@@ -881,7 +881,7 @@ exports[`WorkspaceList Snapshots matches snapshot for workspaces list with data 
       aria-controls="radix-«r0»"
       aria-expanded="false"
       aria-haspopup="dialog"
-      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 dark:text-white dark:bg-gray-600"
       data-slot="dialog-trigger"
       data-state="closed"
       type="button"
@@ -910,10 +910,10 @@ exports[`WorkspaceList Snapshots matches snapshot for workspaces list with data 
     </button>
   </div>
   <div
-    class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg"
+    class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg dark:text-white dark:bg-gray-600"
   >
     <p
-      class="text-blue-800 text-sm"
+      class="text-blue-800 text-sm dark:text-white"
     >
       Workspaces: 
       2

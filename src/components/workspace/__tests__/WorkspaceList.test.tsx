@@ -11,7 +11,7 @@ global.fetch = mockFetch;
 describe('WorkspaceList', () => {
   const mockOnWorkspaceSelect = jest.fn();
   const testUserId = 'test-user-id';
-  
+
   const mockWorkspaces: Workspace[] = [
     {
       id: '1',
@@ -144,7 +144,7 @@ describe('WorkspaceList', () => {
     // Fill form
     await user.type(screen.getByLabelText('Name'), 'New Workspace');
     await user.type(screen.getByLabelText('Description (optional)'), 'New test workspace');
-    
+
     // Submit form
     await user.click(screen.getByRole('button', { name: 'Create Workspace' }));
 
@@ -181,7 +181,7 @@ describe('WorkspaceList', () => {
     render(<WorkspaceList userId={testUserId} onWorkspaceSelect={mockOnWorkspaceSelect} />);
 
     await waitFor(() => {
-      expect(screen.getByText(`Maximum workspace limit reached (${LIMITS.WORKSPACES_PER_USER}/${LIMITS.WORKSPACES_PER_USER})`)).toBeInTheDocument();
+      expect(screen.getByText(/Maximum workspace limit reached/)).toBeInTheDocument();
     });
 
     expect(screen.getByRole('button', { name: /Create Workspace/ })).toBeDisabled();

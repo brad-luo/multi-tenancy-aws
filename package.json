@@ -36,6 +36,7 @@
     "zod": "^4.1.5"
   },
   "devDependencies": {
+    "@edge-runtime/jest-environment": "^4.0.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.8.0",
@@ -51,6 +52,7 @@
     "jest-environment-jsdom": "^30.1.1",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.7",
-    "typescript": "^5"
+    "typescript": "^5",
+    "undici": "^7.15.0"
   }
 }
